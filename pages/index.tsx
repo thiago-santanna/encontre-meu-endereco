@@ -4,6 +4,7 @@ import axios from "../providers/axios";
 import { useState } from "react";
 import { ICep } from "../types/cep";
 import InputMask from "react-input-mask";
+import Mapa from "../components/mapa";
 
 const Home: NextPage = () => {
   const [cep, setCep] = useState<ICep | any>({});
@@ -72,6 +73,8 @@ const Home: NextPage = () => {
             ddd: <span>{cep.ddd}</span>
           </span>
         </div>
+
+        <Mapa />
       </div>
     </>
   );
