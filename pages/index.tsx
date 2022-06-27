@@ -6,16 +6,18 @@ import { ICep } from "../types/cep";
 import InputMask from "react-input-mask";
 
 const Home: NextPage = () => {
-  const [cep, setCep] = useState<ICep | undefined>(undefined);
+  const [cep, setCep] = useState<ICep | any>({});
   const [inputCep, setInputCep] = useState<string>("");
 
-  const cepLimpo = inputCep.replace(/\.|\-/g, "");
-  console.log(cepLimpo);
-
-  function handleDashboard() {
+  function handleGetCep() {
+    const cepLimpo = inputCep.replace(/\.|\-/g, "");
     axios
-      .get(`https://viacep.com.br/ws/${52120315}/json/`)
-      .then(function (response) {})
+      .get(`https://viacep.com.br/ws/${cepLimpo}/json/`)
+      .then(function (response) {
+        const getCep: ICep = response.data;
+        setCep(getCep);
+        console.log(cep);
+      })
       .catch(function (error) {
         console.log(error);
       });
@@ -42,7 +44,7 @@ const Home: NextPage = () => {
           />
           <button
             type="button"
-            // onClick={handleInsertUser}
+            onClick={handleGetCep}
             className="w-full px-4 py-2 tracking-wide text-white text-center transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50"
           >
             <span className="text-lg">Consultar...</span>
@@ -50,24 +52,24 @@ const Home: NextPage = () => {
         </div>
         <div className="grid grid-cols-2 w-full md:max-w-3xl p-4 m-4">
           <span className="p-4 bg-blue-200 border border-solid gap-1">
-            logradouro: <span></span>
+            logradouro: <span>{cep.logradouro}</span>
           </span>
           <span className="p-4 bg-slate-300 border border-solid gap-1">
-            complemento: <span></span>
-          </span>
-
-          <span className="p-4 bg-slate-300 border border-solid gap-1">
-            bairro: <span></span>
-          </span>
-          <span className="p-4 bg-slate-300 border border-solid gap-1">
-            bairro: <span></span>
+            complemento: <span>{cep.complemento}</span>
           </span>
 
           <span className="p-4 bg-slate-300 border border-solid gap-1">
-            localidade: <span></span>
+            bairro: <span>{cep.bairro}</span>
           </span>
           <span className="p-4 bg-slate-300 border border-solid gap-1">
-            ddd: <span></span>
+            ibge: <span>{cep.ibge}</span>
+          </span>
+
+          <span className="p-4 bg-slate-300 border border-solid gap-1">
+            localidade: <span>{cep.localidade}</span>
+          </span>
+          <span className="p-4 bg-slate-300 border border-solid gap-1">
+            ddd: <span>{cep.ddd}</span>
           </span>
         </div>
       </div>
