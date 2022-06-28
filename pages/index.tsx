@@ -4,7 +4,6 @@ import axios from "../providers/axios";
 import { useState } from "react";
 import { ICep } from "../types/cep";
 import InputMask from "react-input-mask";
-import Mapa from "../components/mapa";
 
 const Home: NextPage = () => {
   const [cep, setCep] = useState<ICep | any>({});
@@ -32,7 +31,7 @@ const Home: NextPage = () => {
       </Head>
 
       <div className="mx-auto h-screen overflow-hidden flex flex-col items-center justify-center bg-stone-400">
-        <h1 className="text-3xl font-bold m-4 p-4">Pesquise seu CEP</h1>
+        <h1 className="text-3xl font-bold m-4 p-4">Pesquise um endereço</h1>
         <p className="mb-6">Informe um CEP válido.</p>
         <div className="px-4 gap-2 overflow-hidden flex items-center justify-center">
           <InputMask
@@ -55,26 +54,24 @@ const Home: NextPage = () => {
           <span className="p-4 bg-blue-200 border border-solid gap-1">
             logradouro: <span>{cep.logradouro}</span>
           </span>
-          <span className="p-4 bg-slate-300 border border-solid gap-1">
+          <span className="p-4 bg-blue-200 border border-solid gap-1">
             complemento: <span>{cep.complemento}</span>
           </span>
 
-          <span className="p-4 bg-slate-300 border border-solid gap-1">
+          <span className="p-4 bg-blue-200 border border-solid gap-1">
             bairro: <span>{cep.bairro}</span>
           </span>
-          <span className="p-4 bg-slate-300 border border-solid gap-1">
+          <span className="p-4 bg-blue-200 border border-solid gap-1">
             ibge: <span>{cep.ibge}</span>
           </span>
 
-          <span className="p-4 bg-slate-300 border border-solid gap-1">
+          <span className="p-4 bg-blue-200 border border-solid gap-1">
             localidade: <span>{cep.localidade}</span>
           </span>
-          <span className="p-4 bg-slate-300 border border-solid gap-1">
+          <span className="p-4 bg-blue-200 border border-solid gap-1">
             ddd: <span>{cep.ddd}</span>
           </span>
         </div>
-
-        <Mapa />
       </div>
     </>
   );
