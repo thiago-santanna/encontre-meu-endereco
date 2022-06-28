@@ -32,7 +32,9 @@ const Home: NextPage = () => {
 
       <div className="mx-auto h-screen overflow-hidden flex flex-col items-center justify-center bg-stone-400">
         <h1 className="text-3xl font-bold m-4 p-4">Pesquise um endereço</h1>
-        <p className="mb-6">Informe um CEP válido.</p>
+        <p className="mb-6">
+          <a href="">Informe um CEP válido.</a>
+        </p>
         <div className="px-4 gap-2 overflow-hidden flex items-center justify-center">
           <InputMask
             mask="99.999-999"
@@ -72,6 +74,11 @@ const Home: NextPage = () => {
             ddd: <span>{cep.ddd}</span>
           </span>
         </div>
+        <p className="mb-6 text-blue-900 text-xl">
+          <a href="https://curriculo-dev.tsswebapps.com/">
+            TSS Aplicativos Web
+          </a>
+        </p>
       </div>
     </>
   );
